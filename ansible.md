@@ -1,4 +1,4 @@
- **ANSIBLE https://docs.ansible.com**
+ ## ANSIBLE
 
 Ansible is called agentless, which means that there is no need to install any additional software on the target machines to be able to work with ansible. A simple SSH connectivity would suffice ansible’s needs.
 
@@ -10,7 +10,7 @@ Configuration Management is **the process of maintaining systems, such as compu
 
 Ansible will access AWS resources using boto SDK.
 
-**What Ansible is** -
+**What Ansible is**?
 
 If you're a systems engineer or IT administrator, just anybody working in IT, you're probably involved in doing a lot of repetitive tasks in your environment. Whether it be sizing, creating new hosts, virtual machines every day, finding configurations on them, patching on hundreds of servers, migrations, deploying applications, even performing security compliance audits. All of these very repetitive tasks involve execution of hundreds of commands on hundreds of different servers while maintaining the right sequence of events, with system reboots that are not in between. Some people develop scripts to automate these tasks that require coding skills and regular maintenance of these scripts, and a lot of time to put these scripts together in the first place. That's where Ansible helps.
 
@@ -20,7 +20,7 @@ Ansible is a powerful IT automation tool, used to automate even the most complex
 
 Let's take a look at a simple use case. Imagine you have a number of hosts in our environment that you would like to restart in a particular order. Some of them are web servers, others are database servers. You would like to power down the web servers first, followed by the database servers, then power up the database servers, then the web servers. You could write an Ansible playbook to get this done in a matter of minutes, and simply invoke the Ansible playbook every time you wish to restart your application
 
-**Ansible inventory**
+## Ansible inventory
 
 Ansible can work with one or multiple systems in the infrastructure at the same time. In order to work with multiple servers, ansible needs to establish connectivity to those servers, this is done using SSH for linux and powershell remoting for windows.  
 Ansible is called agentless, which means that there is no need to install any additional software on the target machines to be able to work with ansible. A simple SSH connectivity would suffice ansible’s needs.**Inventory file - /etc/ansible/hosts**
@@ -29,11 +29,11 @@ Ansible is called agentless, which means that there is no need to install any ad
 
 ![](images/media/image38.png)
 
-Ansible\_host is an inventory parameter used to specify the FQDN or IP address of a server, other inventory parameters include – ansible\_connection, ansible\_port.
+*Ansible_host* is an inventory parameter used to specify the FQDN or IP address of a server, other inventory parameters include – *ansible_connection*, *ansible_port*.
 
-Ansible configuration file 🡪 vi /etc/ansible/ansible.cfg
+Ansible configuration file 🡪 `vi /etc/ansible/ansible.cfg`
 
-**Ansible playbooks**
+## Ansible playbooks
 
 Ansible playbooks are Ansible's orchestration language. It is in playbooks where we define what we want Ansible to do, it is a set of instructions to ansible. Playbooks are text files or configuration files that are written in a particular format called YAML.
 
@@ -49,7 +49,7 @@ Playbook contains plays
 Plays contains tasks  
 Tasks contain modules
 
-**Hosts**
+## Hosts
 
 The host parameter indicates which hosts the operations in the YAML file to be run on.
 
@@ -57,7 +57,7 @@ The host parameter indicates which hosts the operations in the YAML file to be r
 
 ![](images/media/image26.png)
 
-**Modules**
+## Modules
 
 There are over 1000 modules provided by ansible to automate every part of the environment. Modules are like plugins that do the actual work in ansible, they are what gets executed in each playbook task. Each module is mostly standalone and can be written in a standard scripting language (such as python, perl, ruby, bash, etc.). **One of the guiding properties of modules is idempotency. The different actions run by tasks are called modules.**
 
@@ -79,7 +79,7 @@ Some modules accept free-form input, and the other modules accept parameterized 
 
 We run ansible in 2 ways, first using the ansible command and then using the ansible playbook command.
 
-**Ansible variables**
+## Ansible variables
 
 Just like any other scripting or programming language, variables are used to store values that vary with different items.  
 Variables are used to store values that vary with different items. For example, let's say we are trying to perform the same operation of applying patches to hundreds of servers. We only need a single playbook for all 100 servers. However, it's the variables that store information about the different host names, usernames or passwords that are different for each server.
@@ -90,11 +90,11 @@ Variables are used to store values that vary with different items. For example, 
 
 ![](images/media/image16.png)
 
-**Ansible conditionals**
+## Ansible conditionals
 
 ![](images/media/image48.png)
 
-Ansible\_os\_family is a built in variable, that ansible populates with the flavour of OS.
+*Ansible_os_family* is a built in variable, that ansible populates with the flavour of OS.
 
 ![](images/media/image44.png)
 
@@ -104,7 +104,8 @@ Ansible\_os\_family is a built in variable, that ansible populates with the flav
 
 To record the output of one task, we could use the register directive, we say the register the output to the desired variable.
 
-**Ansible loops**  
+## Ansible loops
+
 Loop is a looping directive that executes the same task multiple times. Loop and with\_items are both similar. ‘item’ is the default variable
 
 ![](images/media/image31.png)
@@ -115,7 +116,7 @@ Loop is a looping directive that executes the same task multiple times. Loop and
 
 ![](images/media/image32.png)
 
-**Ansible roles**
+## Ansible roles
 
 Ansible roles, logically breaks the playbook into reusable components. The primary purpose of roles is to make the work reusable. Be it for other tasks or projects within your organization or outside for others globally. Roles help us organize the project in a standard structure. Instead of all of them rewriting the same piece of code, we could package it into a role and reuse it later, next time, we could simply assign the role created. Example: MySQL (below).
 
@@ -133,7 +134,7 @@ Note: 1. Handlers folder is used to start the services. 2. /etc/ansible/roles is
 
 ![](images/media/image30.png)
 
-**Ansible patterns:**
+## Ansible patterns
 
 We know how to define what hosts we run tasks against, patterns in ansible are how we decide which hosts to manage.  
 Example: to run on multiple servers  
@@ -148,77 +149,54 @@ We have seen inventory information defined in inventory files(sample inventory f
 
 ![C:\\Downloads\\IMG\_1486.jpg](images/media/image39.jpg)
 
-**Institute**
 
 ![C:\\Downloads\\IMG\_1492.jpg](images/media/image27.jpg)
 
-Setting up of servers using the keygen
+**Setting up of servers using the keygen**
 
-Cd .ssh
-
-Ls
-
-Authorized\_keys (pem key will be stored) – along with this we also need one public key to authenticate other servers.
-
+```bash
+cd .ssh
+ls
+Authorized_keys (pem key will be stored) – along with this we also need one public key to authenticate other servers.
 To generate public key – ssh-keygen
+```
 
 ![C:\\Downloads\\IMG\_1501.jpg](images/media/image34.jpg)
 
-Paste the id\_rsa.pub key in the other server in the authorized key file to authenticate.
+**Paste the id_rsa.pub key in the other server in the authorized key file to authenticate**
 
-**To authenticate other servers**
+## To authenticate other servers
 
 First update the internal repository and install python and ansible. Ansible is python dependent.
 
-Vi /etc/ssh/sshd\_config
+`vi /etc/ssh/sshd\_config`
 
 > \#Permitrootlogin – remove \# to enable
 
+```bash
 Password authentication – change it to yes
-
 Service sshd restart
-
 To check connection established from ansible server to other :
 
 ssh root@ipaddroftheserver
-
 To come out of the server – exit
+```
 
-**Inventory groups**
+## Inventory groups
 
-Cd /etc/ansible
-
-Vi hosts
-
-Create groups \[dev\], \[prod\], \[qa\] with ip address
-
-**Ansible vault**
+```bash
+cd /etc/ansible
+vi hosts
+create groups \[dev\], \[prod\], \[qa\] with ip address
+```
+## Ansible vault
 
 Ansible vault is a feature of ansible that allows you to store sensible info, such as passwords, keys and API’s in encrypted format. To protect the playbooks we use vaulting.
 
 ![C:\\Downloads\\IMG\_1526.jpg](images/media/image35.jpg)
 
-**Ansible reusable scripts / playbooks**
 
-Ansible modules
-
-Module index
-
-Choose the type of module required
-
-Ansible galaxy
-
-Search what is required
-
-Go to github-repo
-
-Tasks
-
-Main.yml
-
-**Udemy Advanced**
-
-**File separation**
+## File separation
 
 It is better to define the variables in a separate file for that server, instead defining it in the same inventory file. To achieve this, we first create a host\_vars directory next to the playbook and then create a file with the same name as that of the server. Then we move the variables and their values from the inventory file to the newly created file.
 
@@ -271,32 +249,30 @@ In this case, ansible executes, based on the number or the % of servers mentione
 Serial:
 
 \-2
-
 \-3
-
 \-5
 
 To run the play against 2 servers first, 3 next and then 5, this is mostly useful for rolling updates.
 
-**Forks**
+## Forks
 
-  - > How many servers can ansible talk to at a time, can ansible deploy the tasks on all mentioned servers (if there are 100) at a time, the answer is no, unless specified explicitly. Ansible uses parallel processes or forks to communicate with remote hosts, **ansible can create 5 forks** at a time and this is defined in the ansible configuration file ansible.cfg, this means that even if you try to run this playbook against a 100 hosts, ansible will only run across 5 at a time.
+How many servers can ansible talk to at a time, can ansible deploy the tasks on all mentioned servers (if there are 100) at a time, the answer is no, unless specified explicitly. Ansible uses parallel processes or forks to communicate with remote hosts, **ansible can create 5 forks** at a time and this is defined in the ansible configuration file ansible.cfg, this means that even if you try to run this playbook against a 100 hosts, ansible will only run across 5 at a time.
 
 ![C:\\Downloads\\IMG\_1520.jpg](images/media/image28.jpg)
 
 By default ansible can create 5 forks at a time, that is defined in the ansible configuration file. i.e., ansible.cfg
 
-**Error handling**
+## Error handling
 
 Ansible executes each task against the server, until all of them are complete. In a single server scenario, if it fails at a particular step, it straightforward exits the playbook. If the playbook is running against 3 separate servers, if it fails at a particular step, ansible takes that server out of the list and continues to execute the remainder of the tasks across the other healthy and available servers, this is the default behavior of the ansible.
 
-By using any\_errors\_fatal=true, if any task fails on one server, ansible stops the execution of the play on all the available servers and exits.
+By using any_errors_fatal=true, if any task fails on one server, ansible stops the execution of the play on all the available servers and exits.
 
 ![C:\\Downloads\\IMG\_1521.jpg](images/media/image14.jpg)
 
-**Ignore errors, failed\_when**
+**Ignore errors, failed_when**
 
-At the end of our application playbook. We would like to add a new task to send out a notification email stating that the web server is ready. We use the mail module to send out an email to our team with the subject and body. In this case we are sending an email to devops@corp.com with the subject that the server is deployed and every simple body. However this is not a critical requirement and our SMTP server is not very stable. So we really don't care if this task completes successfully or not. Even if the mail doesn't go through at times we're still OK and we don't want the playbook to fail because of it. It's just good to have features. To ignore errors we could simply set **ignore\_errors** to yes on the task. Then the playbook execution will not stop and fail. Instead it will simply ignore the error and continue. Next we would like to do some error checking. For example we would like to check the contents of a file called server.log and fail the playbook if it has any errors in it. For this, we use the command module to execute a cat /var/log/server.log command. This command returns the contents of the file. As long as the file is present and readable the task will complete successfully. However, as discussed we would like to fail the playbook in case there are errors inside the file. For this we are first going to register the result of the command in a variable called command\_output and then we're going to use the failed\_when directive. We will write a condition in it to look for the word error in the command output. If it exists ansible will fail the play because the value of failed\_when will then be true. If it doesn't exist, then the value in failed\_when will be false and so it just continues as normal<span class="underline">.</span>
+At the end of our application playbook. We would like to add a new task to send out a notification email stating that the web server is ready. We use the mail module to send out an email to our team with the subject and body. In this case we are sending an email to devops@corp.com with the subject that the server is deployed and every simple body. However this is not a critical requirement and our SMTP server is not very stable. So we really don't care if this task completes successfully or not. Even if the mail doesn't go through at times we're still OK and we don't want the playbook to fail because of it. It's just good to have features. To ignore errors we could simply set **ignore_errors** to yes on the task. Then the playbook execution will not stop and fail. Instead it will simply ignore the error and continue. Next we would like to do some error checking. For example we would like to check the contents of a file called server.log and fail the playbook if it has any errors in it. For this, we use the command module to execute a cat /var/log/server.log command. This command returns the contents of the file. As long as the file is present and readable the task will complete successfully. However, as discussed we would like to fail the playbook in case there are errors inside the file. For this we are first going to register the result of the command in a variable called command_output and then we're going to use the **failed_when** directive. We will write a condition in it to look for the word error in the command output. If it exists ansible will fail the play because the value of failed_when will then be true. If it doesn't exist, then the value in failed_when will be false and so it just continues as normal<span class="underline">.</span>
 
 ![C:\\Downloads\\IMG\_2645.jpg](images/media/image11.jpg)
 
@@ -312,14 +288,15 @@ At the end of our application playbook. We would like to add a new task to send 
 
 ![C:\\Downloads\\IMG\_1524.jpg](images/media/image4.jpg)
 
-**Lookups 🡪** So far we've been storing credentials for our targets servers inside the inventory file. What if there are too many servers or this information is already available elsewhere. Let's say we have the credentials of the servers stored in a CSV file in a host name and password format. The first column being the host name and the second column being the password. To read the contents of the file while ansible playbook is running and to get the password associated with a host, we can use the Lookup plugin. This is how we use the Lookup plugin. For example, in this case the first argument that we passed to the LookUp plugin is the type of the file which happens to be a CSV file in this case. There are a number of other options available that we'll see in a bit. Then comes the value to lookup. For example, here we like to look up information about the server Target1, followed by the file we are looking at. For example, in this case the file is stored under the tmp directory and is called credentials.csv. And finally the Delimiter which happens to be comma(,) in this case because it's a CSV file. If you have a file which uses another separator maybe like a semicolon or something then you could specify that here. So this same lookup plugin for CSV file supports multiple other characters, separated file formats as well. In this case, this whole function or plugin is going to return the password from the CSV file. There are a few other lookup plugins available such as INI, DNS, MongoDB, etc.
+## Lookups
 
-**  
+So far we've been storing credentials for our targets servers inside the inventory file. What if there are too many servers or this information is already available elsewhere. Let's say we have the credentials of the servers stored in a CSV file in a host name and password format. The first column being the host name and the second column being the password. To read the contents of the file while ansible playbook is running and to get the password associated with a host, we can use the Lookup plugin. This is how we use the Lookup plugin. For example, in this case the first argument that we passed to the LookUp plugin is the type of the file which happens to be a CSV file in this case. There are a number of other options available that we'll see in a bit. Then comes the value to lookup. For example, here we like to look up information about the server Target1, followed by the file we are looking at. For example, in this case the file is stored under the tmp directory and is called credentials.csv. And finally the Delimiter which happens to be comma(,) in this case because it's a CSV file. If you have a file which uses another separator maybe like a semicolon or something then you could specify that here. So this same lookup plugin for CSV file supports multiple other characters, separated file formats as well. In this case, this whole function or plugin is going to return the password from the CSV file. There are a few other lookup plugins available such as INI, DNS, MongoDB, etc.
+ 
 Lookup plugins are just like custom scripts that can do specific tasks like read files, connect to a URL, connect to a database**.
 
 ![C:\\Downloads\\IMG\_1525.jpg](images/media/image9.jpg)
 
-**Dynamic inventory**
+## Dynamic inventory
 
 The dynamic inventory is inventory information that ansible retrieves programmatically when the ansible playbook is run as opposed to us defining it in a static inventory text file.
 
@@ -329,59 +306,57 @@ The dynamic inventory is inventory information that ansible retrieves programmat
 
 ![C:\\Downloads\\IMG\_1529 (1).jpg](images/media/image15.jpg)
 
-**Custom modules**
+## Custom modules
 
 In order to develop a custom module, we have to develop a custom python script
 
-**Commands**:
+## Commands
 
-To check the connectivity with other server – ansible targetservername –m ping –I inventoryfilename
+To check the connectivity with other server – `ansible targetservername –m ping –I inventoryfilename`
 
-To execute ansible playbook – ansible-playbook playbookname.yml
+To execute ansible playbook – `ansible-playbook playbookname.yml`
 
-To know more about playbook – ansible-playbook - - help
+To know more about playbook – `ansible-playbook - - help`
 
-To ping target servers using ansible command – ansible all –m ping –I filename
+To ping target servers using ansible command – `ansible all –m ping –I filename`
 
-To ping target servers using ansible playbook command – ansible-playbook playbookname.yml –I inventoryfilename
+To ping target servers using ansible playbook command – `ansible-playbook playbookname.yml –I inventoryfilename`
 
-To create role – ansible-galaxy init rolename (Example: mysql)
+To create role – `ansible`-galaxy init rolename` (Example: mysql)
 
-To search roles – ansible-galaxy search rolename
+To search roles – `ansible-galaxy search rolename`
 
-To install the role – ansible-galaxy install rolename
+To install the role – `ansible-galaxy install rolename`
 
-To view the list of roles currently installed – ansible-galaxy list
+To view the list of roles currently installed – `ansible-galaxy list`
 
-To view the location where roles would be installed – ansible-config dump | grep role
+To view the location where roles would be installed – `ansible-config dump | grep role`
 
-To install roles in the current directory – ansible-galaxy install rolename –p ./roles
+To install roles in the current directory – `ansible-galaxy install rolename –p ./roles`
 
-To ping server which is stored in inventory group – ansible –m ping servername
+To ping server which is stored in inventory group – `ansible –m ping servername`
 
-To ping all servers together – ansible –m ping all
+To ping all servers together – `ansible –m ping all`
 
-To check if there are any syntax errors in yaml file –  
-ansible-playbook playbookname.yml --syntax-check
+To check if there are any syntax errors in yaml file – `ansible-playbook playbookname.yml --syntax-check`
 
-To create a log file & move the output to the log file –  
-ansible\_playbook playbookname.yml \>\> filename.log
+To create a log file & move the output to the log file – `ansible-playbook playbookname.yml \>\> filename.log`
 
-To create a vault file – ansible-vault create filename.txt
+To create a vault file – `ansible-vault create filename.txt`
 
-To edit the content in vault file – ansible-vault edit filename
+To edit the content in vault file – `ansible-vault edit filename`
 
-To view the vault file – ansible-vault view filename
+To view the vault file – `ansible-vault view filename`
 
-To change the password of vault file – ansible-vault rekey filename
+To change the password of vault file – `ansible-vault rekey filename`
 
-To decrypt the file – ansible-vault decrypt filename
+To decrypt the file – `ansible-vault decrypt filename`
 
-To add vault for existing file – ansible-vault encrypt filename or playbookname.yml
+To add vault for existing file – `ansible-vault encrypt filename or playbookname.yml`
 
-If encrypted file is used in the project then we must append the option ask-vault-pass, so that the ansible asks for the vault password - ansible-playbook playbookname.yml –I inventoryfilename –ask-vault-pass
+If encrypted file is used in the project then we must append the option ask-vault-pass, so that the ansible asks for the vault password - `ansible-playbook playbookname.yml –I inventoryfilename –ask-vault-pass`
 
-**<span class="underline">Introduction to Ansible Configuration files in Udemy</span>**
+## Introduction to Ansible Configuration files
 
 When Ansible is installed, it creates a default configuration file at the location, **/etc/ansible/ansible.cfg.** The Ansible configuration file governs the default behavior of Ansible using a set of parameters.
 
@@ -389,12 +364,12 @@ When Ansible is installed, it creates a default configuration file at the locati
 
 Here, different ways of specifying the configuration file have been mentioned. What if all of them have been configured and different values for different parameters in each of them? which one does it consider, and what order does ansible pick the configuration files in?
 
-1.  > First priority is always to the parameters configured in the file specified through an environment variable. Any values configured in this file overrides the values configured in all other files.
+  > First priority is always to the parameters configured in the file specified through an environment variable. Any values configured in this file overrides the values configured in all other files.
 
-2.  > ansible.cfg in the current directory.
+  > ansible.cfg in the current directory.
 
-3.  > .ansible.cfg file in the user’s home directory.
+  > .ansible.cfg file in the user’s home directory.
 
-4.  > default configuration file in /etc/ansible/ansible.cfg
+  > default configuration file in /etc/ansible/ansible.cfg
 
 ![](images/media/image13.png)![](images/media/image37.png)
